@@ -5,11 +5,9 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-export default async function (req, res) {
-  const { priceMin, priceMax, age, gender, hobbies } = req.body;
-  const prompt = generatePrompt(priceMin, priceMax, age, gender, hobbies);
-
-  console.log(prompt);
+export default async (req, res) => {
+  const { priceMin, priceMax, age, hobbies } = req.body;
+  const prompt = generatePrompt(priceMin, priceMax, age, hobbies);
 
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
@@ -20,6 +18,6 @@ export default async function (req, res) {
   res.status(200).json({ result: completion.data.choices[0].text });
 }
 
-function generatePrompt(priceMin, priceMax, age, gender, hobbies) {
-  return `Suggest Valentine's Day gift ideas between ${priceMin} and ${priceMax} for a ${age} years old ${gender} that is into ${hobbies}.`;
+const generatePrompt = (priceMin, priceMax, age, hobbies) => {
+  return `Suggest Valentine's Day gift ideas between ${priceMin} and ${priceMax} for a ${age} years old that is into ${hobbies}.`;
 }

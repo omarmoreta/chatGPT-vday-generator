@@ -4,7 +4,6 @@ import { useState } from "react";
 import styles from "./index.module.css";
 
 export default function Home() {
-  const [gender, setGender] = useState("woman");
   const [age, setAge] = useState("25");
   const [priceMin, setPriceMin] = useState("25");
   const [priceMax, setPriceMax] = useState("100");
@@ -24,7 +23,7 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ priceMin, priceMax, age, gender, hobbies }),
+        body: JSON.stringify({ priceMin, priceMax, age, hobbies }),
       });
       const data = await response.json();
       if (response.status !== 200) {
@@ -46,28 +45,17 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>OpenAI Quickstart</title>
-        <link rel="icon" href="/dog.png" />
+        <title>V-Day Gift Ideas</title>
+        <link rel="icon" href="/favicon.png" />
       </Head>
 
       <main className={styles.main}>
-        {/* <img src="/dog.png" className={styles.icon} /> */}
-        <h3>Valentine's Day gift generator 🎁 💡</h3>
+        <h3>❤️ V-Day Gift Generator 🎁</h3>
         <form onSubmit={onSubmit}>
-          <label>For who is the gift?</label>
-          <select
-            name="gender"
-            value={gender}
-            onChange={(e) => setGender(e.target.value)}
-          >
-            <option value="man">Man</option>
-            <option value="woman">Woman</option>
-          </select>
-
           <label>Age</label>
           <input
             type="number"
-            min={1}
+            min={18}
             max={99}
             name="age"
             placeholder="Enter the age"
@@ -75,7 +63,7 @@ export default function Home() {
             onChange={(e) => setAge(Number.parseInt(e.target.value))}
           />
 
-          <label>Price from</label>
+          <label>Gift Min Price</label>
           <input
             type="number"
             min={1}
@@ -85,7 +73,7 @@ export default function Home() {
             onChange={(e) => setPriceMin(Number.parseInt(e.target.value))}
           />
 
-          <label>Price to</label>
+          <label>Gift Max Price</label>
           <input
             type="number"
             min={1}
@@ -99,15 +87,15 @@ export default function Home() {
           <input
             type="text"
             name="hobbies"
-            placeholder="Enter the hobbies"
+            placeholder="fishing, basketball, gardening"
             value={hobbies}
             onChange={(e) => setHobbies(e.target.value)}
           />
-          <input type="submit" value="Generate gift ideas" />
+          <input type="submit" value="💡 Generate Gift Ideas 💡" />
         </form>
         {loading && (
           <div>
-            <h3>Looking for the best gift ideas 🎁 💡</h3>
+            <h3>Looking for the best gift ideas 💡</h3>
             <img src="/loading.webp" className={styles.loading} />
           </div>
         )}
