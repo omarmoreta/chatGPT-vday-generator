@@ -41,12 +41,18 @@
   flex-direction: column;
   width: 320px;
 }
-.main input[type="text"] {
-  padding: 12px 16px;
+.main input[type="text"], 
+.main input[type="number"],
+.main select {
+  padding: 10px 12px;
   border: 1px solid #10a37f;
   border-radius: 4px;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
   outline-color: #10a37f;
+  margin-top: 4px;
+}
+.main .loading {
+  width: 100px,
 }
 .main ::placeholder {
   color: #8e8ea0;
